@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: deploy
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push events but only for the master branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.1.4
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.x
+          # The target architecture (x86, x64) of the Python interpreter.
+          architecture: x64
+
+      # Install LimaCharlie CLI
+      - name: Install LimaCharlie
+        run: git clone https://github.com/deathbyknowledge/python-limacharlie.git && cd ./python-limacharlie && python setup.py develop && cd ..
+        # run: pip install limacharlie
+
+      # Set credentials
+      - name: Set LimaCharlie credentials
+        run: echo "LC_UID=${{ secrets.LC_UID }}" >> $GITHUB_ENV
+      - name: Set LimaCharlie credentials
+        run: echo "LC_API_KEY=${{ secrets.LC_API_KEY }}" >> $GITHUB_ENV
+      - name: Set Output Secret Key
+        run: echo "OUTPUT_SECRET=${{ secrets.OUTPUT_SECRET }}" >> $GITHUB_ENV
+
+      # Start deploying to all customers
+      - name: Deploy to Customer 1
+        run: limacharlie configs push --oid 8e1b64b0-9626-46b7-bbf1-f8fb90c5228c --verbose --ignore-inaccessible --config ./configs/customers/SkySec-Dev/main.yaml --hive-dr-general --hive-fp --outputs 

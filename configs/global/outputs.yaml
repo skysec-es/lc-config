@@ -1,0 +1,7 @@
+outputs:
+  Jira Outputs websocket:
+    dest_host: https://europe-west3-skysec.cloudfunctions.net/lc-detections-to-jira
+    module: webhook
+    name: Jira Outputs websocket
+    secret_key: !ENV OUTPUT_SECRET
+    type: detect
