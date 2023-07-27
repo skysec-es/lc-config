@@ -2,8 +2,3 @@ version: 3
 include:
   - rules.yaml
   - outputs.yaml
-  - integrity.yaml
-  - artifact.yaml
-  - exfil.yaml
-  - fp.yaml
-  - resources.yaml
