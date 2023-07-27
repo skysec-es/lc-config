@@ -1,3 +1,4 @@
+version: 3
 outputs:
   Jira Outputs websocket:
     dest_host: https://europe-west3-skysec.cloudfunctions.net/lc-detections-to-jira
