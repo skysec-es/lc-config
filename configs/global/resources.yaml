@@ -4,7 +4,7 @@ resources:
   - insight
   replicant:
   - sensor-cull
-  - atomic-read-team
+  - atomic-red-team
   - snapattack-community
   - exfil
   - integrity
