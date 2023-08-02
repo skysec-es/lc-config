@@ -1,0 +1,18 @@
+version: 3
+resources:
+  api:
+  - insight
+  replicant:
+  - sensor-cull
+  - atomic-read-team
+  - snapattack-community
+  - exfil
+  - integrity
+  - replay
+  - sigma
+  - logging
+  - reliable-tasking
+  - yara
+  - infrastructure-service
+  - dumper
+  - responder
