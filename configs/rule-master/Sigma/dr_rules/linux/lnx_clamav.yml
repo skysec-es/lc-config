@@ -1,0 +1,33 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: matches
+      path: event/COMMAND_LINE
+      re: Trojan.*FOUND
+    - op: matches
+      path: event/COMMAND_LINE
+      re: VirTool.*FOUND
+    - op: matches
+      path: event/COMMAND_LINE
+      re: Webshell.*FOUND
+    - op: matches
+      path: event/COMMAND_LINE
+      re: Rootkit.*FOUND
+    - op: matches
+      path: event/COMMAND_LINE
+      re: Htran.*FOUND
+respond:
+- action: report
+  metadata:
+    description: Detects relevant ClamAV messages
+    level: high
+    references:
+    - https://github.com/ossec/ossec-hids/blob/master/etc/rules/clam_av_rules.xml
+  name: Relevant ClamAV Message
+

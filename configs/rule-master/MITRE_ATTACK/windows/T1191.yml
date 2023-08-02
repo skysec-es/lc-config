@@ -1,0 +1,10 @@
+# https://attack.mitre.org/wiki/Technique/T1191
+# Detects the execution of the CMSTP.exe process.
+op: and
+event: NEW_PROCESS
+rules:
+  - op: is windows
+  - op: ends with
+    path: event/FILE_PATH
+    value: CMSTP.exe
+    case sensitive: false

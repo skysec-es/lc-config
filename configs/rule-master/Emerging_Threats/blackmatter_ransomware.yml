@@ -1,0 +1,137 @@
+version: 3
+resources:
+  replicant:
+  - exfil
+rules:
+  'BlackMatter/DarkSide Ransomware #001':
+    namespace: general
+    detect:
+      event: FILE_CREATE
+      op: ends with
+      path: event/FILE_PATH
+      value: \Users\1susrKysy.README.txt
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #002':
+    namespace: general
+    detect:
+      event: FILE_MODIFIED
+      op: ends with
+      path: event/FILE_PATH
+      value: \Users\1susrKysy.README.txt
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #003':
+    namespace: general
+    detect:
+      event: NEW_DOCUMENT
+      op: ends with
+      path: event/FILE_PATH
+      value: \Users\1susrKysy.README.txt
+    respond:
+    - action: report
+      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+  'BlackMatter/DarkSide Ransomware #004':
+    namespace: general
+    detect:
+      event: CODE_IDENTITY
+      op: is
+      path: event/HASH
+      value: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #005':
+    namespace: general
+    detect:
+      event: NETWORK_CONNECTIONS
+      op: is
+      path: event/NETWORK_ACTIVITY/?/DESTINATION/IP_ADDRESS
+      value: 99.83.154.118
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #006':
+    namespace: general
+    detect:
+      event: REGISTRY_WRITE
+      op: is
+      path: event/REGISTRY_KEY
+      value: '\\DosDevices\\Z:'
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #007':
+    namespace: general
+    detect:
+      event: REGISTRY_CREATE
+      op: starts with
+      path: event/REGISTRY_KEY
+      value: '\\REGISTRY\\MACHINE\\SOFTWARE\\1susrKysy:'
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #008':
+    namespace: general
+    detect:
+      event: REGISTRY_DELETE
+      op: starts with
+      path: event/REGISTRY_KEY
+      value: '\\REGISTRY\\MACHINE\\SOFTWARE\\1susrKysy:'
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+exfil:
+  watch:
+    blackmatter-darkside-reg-write-2021-11-25:
+      event: REGISTRY_WRITE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-reg-create-2021-11-25:
+      event: REGISTRY_CREATE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-reg-del-2021-11-25:
+      event: REGISTRY_DELETE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-file-new-2021-11-25:
+      event: FILE_CREATE
+      value: 1susrKysy
+      path:
+      - FILE_PATH
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-file-mod-2021-11-25:
+      event: FILE_MODIFIED
+      value: 1susrKysy
+      path:
+      - FILE_PATH
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows

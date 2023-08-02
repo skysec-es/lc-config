@@ -1,0 +1,21 @@
+{
+    "op" : "and",
+    "event" : "NEW_PROCESS",
+    "rules" : [
+        {
+            "op" : "is windows"
+        },
+        {
+            "op" : "ends with",
+            "path" : "event/FILE_PATH",
+            "value" : "icacls.exe",
+            "case sensitive" : false
+        },
+        {
+            "op" : "contains",
+            "path" : "event/COMMAND_LINE",
+            "value" : "grant",
+            "case sensitive" : false
+        }
+    ]
+}
