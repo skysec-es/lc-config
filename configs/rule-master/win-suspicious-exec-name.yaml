@@ -1,8 +1,0 @@
-op: and
-event: NEW_PROCESS
-rules:
-  op: is windows
-- case sensitive: false
-  op: matches
-  path: event/FILE_PATH
-  re: '.*(?:(?:\.txt)|(?:\.doc)|(?:\.ppt)|(?:\.xls)|(?:\.zip)|(?:\.rar)|(?:\.rtf)|(?:\.jpg)|(?:\.gif)|(?:\.pdf)|(?:\.wmi)|(?:\.avi)|(?: {5}.*))\.exe'

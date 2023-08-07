@@ -1,8 +1,0 @@
-op: and
-event: NEW_PROCESS
-rules:
-  op: is windows
-- case sensitive: false
-  op: matches
-  path: event/COMMAND_LINE
-  re: .*(?:\xE2\x80\x8F).*

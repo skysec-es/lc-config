@@ -1,0 +1,3 @@
+version: 3
+include:
+  - winrm_code_exec.yml

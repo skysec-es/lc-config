@@ -1,0 +1,4 @@
+version: 3
+include:
+  - Emerging_Threats/all.yaml
+  - Other_Rules/all.yaml
