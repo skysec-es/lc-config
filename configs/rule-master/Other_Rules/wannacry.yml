@@ -1,0 +1,20 @@
+version: 3
+rules:
+  Wanacry:
+    # Detection
+    detect:
+      op: ends with
+      event: NEW_PROCESS
+      path: event/FILE_PATH
+      value: wanadecryptor.exe
+      case sensitive: false
+    # Response
+    respond: 
+      - action: report
+        name: wanacry
+      - action: task
+        command: history_dump
+      - action: task
+        command:
+          - deny_tree
+          - <<routing/this>>
