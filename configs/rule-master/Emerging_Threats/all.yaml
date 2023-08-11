@@ -1,0 +1,5 @@
+version: 3
+include:
+  - blackmatter_ransomware.yml
+  - guloader.yml
+  - log4j.yml
