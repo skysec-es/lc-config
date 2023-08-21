@@ -46,4 +46,4 @@ jobs:
 
       # Start deploying to all customers
       - name: Deploy to Customer 1
-        run: limacharlie configs push --oid 8e1b64b0-9626-46b7-bbf1-f8fb90c5228c --force --verbose --ignore-inaccessible --config ./configs/customers/SkySec-Dev/main.yaml --rules --fp --outputs --integrity --artifact --exfil --resources
+        run: limacharlie configs push --oid 8e1b64b0-9626-46b7-bbf1-f8fb90c5228c --force --verbose --ignore-inaccessible --use-infra-extension --config ./configs/customers/SkySec-Dev/main.yaml --rules --fp --outputs --integrity --artifact --exfil --resources
