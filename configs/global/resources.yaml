@@ -13,6 +13,5 @@ resources:
   - logging
   - reliable-tasking
   - yara
-  - infrastructure-service
   - dumper
   - responder

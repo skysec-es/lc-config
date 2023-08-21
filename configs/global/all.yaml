@@ -7,3 +7,4 @@ include:
   - exfil.yaml
   - fp.yaml
   - resources.yaml
+  - extensions.yaml
